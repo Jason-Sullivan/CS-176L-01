@@ -1,10 +1,28 @@
 /**
    This program demonstrates the measurable Country class.
 */
+import java.util.Scanner;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+
+
+
 public class MeasurableTester
 {
    public static void main(String[] args)
    {
+	   
+	  Scanner sc = new Scanner (System.in);
+	  
+	  JFrame frame = new JFrame();
+      JPanel panel = new JPanel();
+
+      
+	  
      
 	  //Countries
 	  System.out.println("Countries Data");
@@ -52,7 +70,66 @@ public class MeasurableTester
       
       
       
+      System.out.print("Enter metric to use, 1 for maximum, 2 for minimum, 3 for average: ");
+      int userVal = sc.nextInt();
       
+      System.out.println();
+      String metricUse="";
+      
+      JButton buttonA = new JButton();
+      JButton buttonB = new JButton();
+      JButton buttonC = new JButton();
+      
+      if(userVal==1)
+      {
+    	  metricUse="Maximum";
+    	 // buttonA.setText("Get Maximum Balance");
+    	 // buttonB.setText("Get Maximum Area");
+    	 // buttonC.setText("Get Maximum Score");
+ 
+      }
+      if(userVal==2)
+      {
+    	  metricUse="Minimum";
+    	 // buttonA.setText("Get Minimum Balance");
+    	 // buttonB.setText("Get Minimum Area");
+    	 // buttonC.setText("Get Minimum Score");
+
+      }
+      if(userVal==3)
+      {
+    	  metricUse="Average";
+    	 // buttonA.setText("Get Average Balance");
+    	  //buttonB.setText("Get Average Area");
+    	  //buttonC.setText("Get Average Score");
+
+      }
+      
+      buttonA.setText("Get "+ metricUse+" Balance");
+ 	  buttonB.setText("Get "+ metricUse+" Area");
+ 	  buttonC.setText("Get "+ metricUse+" Score");
+      
+      
+      
+      
+      
+      panel.add(buttonA);
+      panel.add(buttonB);
+      panel.add(buttonC);
+      ActionListener listener1 = new ButtonListener(bank, metricUse, "bank");
+      buttonA.addActionListener(listener1);
+      ActionListener listener2 = new ButtonListener(countries, metricUse, "country");
+      buttonB.addActionListener(listener2);
+      ActionListener listener3 = new ButtonListener(quiz, metricUse, "quiz");
+      buttonC.addActionListener(listener3);
+      
+      
+      
+      frame.add(panel);
+      
+      frame.setSize(200, 200);
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      frame.setVisible(true);
 
    }
 }
